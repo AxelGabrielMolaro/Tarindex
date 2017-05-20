@@ -22,7 +22,7 @@ public interface UsuarioService {
 		public void seterElValorDeAprobadoDeUnUsuario(Integer id,Integer valor0o1);
 		
 		
-		public void modificarUnUsuarioPorId(Integer id,String nickname,String nombre,String apellido,String contraseña,String tipo,Integer estaAprobado);
+		public void modificarUnUsuarioPorId(Integer id,String nickname,String nombre,String apellido,String contraseña,String tipo,Integer estaAprobado) throws Exception;
 		
 		public void eliminarUnUsuarioPorId(Integer id);
 		

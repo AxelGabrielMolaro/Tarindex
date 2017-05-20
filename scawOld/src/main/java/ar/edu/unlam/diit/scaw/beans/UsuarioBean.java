@@ -232,7 +232,8 @@ public class UsuarioBean implements Serializable {
 		this.estaAprobadoABM = usuarioAEditar.getEstaAprobado();
 		this.nickNameABM = usuarioAEditar.getNickName();
 
-		
+		resetearMensajesDeError();
+
 		return "administrador_editar_usuario";
 	}
 	
@@ -241,7 +242,15 @@ public class UsuarioBean implements Serializable {
 	 */
 	public String editarUsuario2()
 	{
-		usuarioService.modificarUnUsuarioPorId(this.idUsuarioABM, this.nickNameABM, this.nombreABM, this.apellidoABM, this.contrasenaABM, this.tipoABM, this.estaAprobadoABM);
+		try {
+			usuarioService.modificarUnUsuarioPorId(this.idUsuarioABM, this.nickNameABM, this.nombreABM, this.apellidoABM, this.contrasenaABM, this.tipoABM, this.estaAprobadoABM);
+		
+		} catch (Exception e) {
+			resetearMensajesDeError();
+			this.mensajeDeError = e.getMessage();
+		
+			return "administrador_editar_usuario";
+		}
 		return "administrador_usuarios_listado";
 	}
 	

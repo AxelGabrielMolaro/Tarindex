@@ -78,15 +78,15 @@ public class UsuarioServiceImpl implements UsuarioService {
 	public void guardarUnUsuarioEnLaBDD(Usuario usuarioAGuardar) throws Exception {
 
 		if (HerramientasExprecionesRegulares.tieneComillasElString(usuarioAGuardar.getNombre())==false||usuarioAGuardar.getNombre().length()==0) {
-			throw new Exception("Error de registro : No use carácteres especiales como '',_ , et");
+			throw new Exception("Error de registro : No use carácteres especiales como espacios , '',_ , et");
 		} else if (HerramientasExprecionesRegulares.tieneComillasElString(usuarioAGuardar.getApellido())==false||usuarioAGuardar.getApellido().length()==0) {
-			throw new Exception("Error de registro : No use carácteres especiales como '',_ , et");
+			throw new Exception("Error de registro : No use carácteres especiales como espacios , '',_ , et");
 		} else if (HerramientasExprecionesRegulares.tieneComillasElString(usuarioAGuardar.getContrasena())==false||usuarioAGuardar.getContrasena().length()==0) {
-			throw new Exception("Error de registro : No use carácteres especiales como '',_ , et");
+			throw new Exception("Error de registro : No use carácteres especiales como espacios , '',_ , et");
 		} else if (HerramientasExprecionesRegulares.tieneComillasElString(usuarioAGuardar.getNickName())==false||usuarioAGuardar.getNickName().length()==0) {
-			throw new Exception("Error de registro : No use carácteres especiales como '',_ , etc");
+			throw new Exception("Error de registro : No use carácteres especiales como espacios , '',_ , et");
 		}else if (HerramientaValidaciones.elLargoStringPasadoEsMayorALaCantidadPasada(usuarioAGuardar.getContrasena(), 7)==false) {
-			throw new Exception("Error de registro : Use una contraseña de por lo menos 8 carácteres");
+			throw new Exception("Error de registro : No use carácteres especiales como espacios , '',_ , et");
 		}
 
 		if (!(usuarioDao.getUsuarioPorNickName(usuarioAGuardar.getNickName()) == null)) {
@@ -101,8 +101,28 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 	@Override
 	public void modificarUnUsuarioPorId(Integer id, String nickname, String nombre, String apellido, String contraseña,
-			String tipo, Integer estaAprobado) {
-		// TODO Auto-generated method stub
+			String tipo, Integer estaAprobado) throws Exception{
+		
+
+		if (HerramientasExprecionesRegulares.tieneComillasElString(nombre)==false|nombre.length()==0) {
+			throw new Exception("Error de edicion : No use carácteres especiales como espacios '',_ , etc");
+		} else if (HerramientasExprecionesRegulares.tieneComillasElString(apellido)==false||apellido.length()==0) {
+			throw new Exception("Error de edicion : No use carácteres especiales como espacios '',_ , etc");
+		} else if (HerramientasExprecionesRegulares.tieneComillasElString(contraseña)==false||contraseña.length()==0) {
+			throw new Exception("Error de edicion : No use carácteres especiales como espacios '',_ , etc");
+		}else if (HerramientasExprecionesRegulares.tieneComillasElString(contraseña)==false||contraseña.length()==0) {
+			throw new Exception("Error de edicion : No use carácteres especiales como espacios '',_ , etc");
+		}else if (HerramientasExprecionesRegulares.tieneComillasElString(tipo)==false||(tipo!= "normal" && tipo !="administrador")) {
+			throw new Exception("Error de edicion : No use carácteres especiales como espacios '',_ , etc");
+		}else if (HerramientasExprecionesRegulares.tieneComillasElString(estaAprobado.toString())==false||(estaAprobado!= 1 && estaAprobado !=2)) {
+			throw new Exception("Error de edicion : No use carácteres especiales como espacios '',_ , etc");
+		}else if (HerramientasExprecionesRegulares.tieneComillasElString(nickname)==false||nickname.length()==0) {
+			throw new Exception("Error de edicion : No use carácteres especiales como espacios '',_ , etc");
+		}else if (HerramientaValidaciones.elLargoStringPasadoEsMayorALaCantidadPasada(contraseña, 7)==false) {
+			throw new Exception("Error de edición : Use una contraseña de por lo menos 8 carácteres");
+		}
+
+		
 		usuarioDao.modificarUnUsuarioPorId(id, nickname, nombre, apellido, contraseña, tipo, estaAprobado);
 
 	}

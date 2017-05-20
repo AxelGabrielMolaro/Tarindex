@@ -25,9 +25,12 @@ public class HerramientasEncriptar {
 		for(Usuario u : listaDeUsuarios)
 		{
 			u.setContrasena(DigestUtils.md5Hex(u.getContrasena()));
+	
 		}
 		
 		
 		return listaDeUsuarios;
 	}
+	
+	
 }

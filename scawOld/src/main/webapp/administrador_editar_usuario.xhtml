@@ -16,7 +16,7 @@
 <br></br><br></br><br></br><br></br>
 		<div class="col-md-offset-4 col-md-4 fomularioTarindex">
 			<h:form>
-				<h3 class="tituloForm text-center">a</h3>
+				<h3 class="tituloForm text-center">Editar usuario</h3>
 				<div class="form-group col-md-6">
 					<label for ="" class="control-label">Nombre</label>
 					<div class="">
@@ -79,6 +79,15 @@
 					styleClass="btn btn-success col-md-offset-9">
 					
 				</h:commandButton>
+				</div>
+				</div>
+				<div class="form-group col-md-12">
+				<label for ="" class="control-label"></label>
+				<div class="">
+				#{tareaBean.mensajeDeError}
+				<h:outputText value="#{tareaBean.mensajeDeError}">
+					
+				</h:outputText>
 				</div>
 				</div>
 				<!-- CONTRASEÑA NO EDITABLE -->
