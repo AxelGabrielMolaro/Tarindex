@@ -1,5 +1,5 @@
 package ar.edu.unlam.diit.scaw.beans;
-
+//comentario de prueba del git
 import java.io.Serializable;
 import java.util.List;
 
