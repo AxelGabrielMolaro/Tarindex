@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+	<title>Listado de tareas públicas</title>
+	<link rel="stylesheet" type="text/css" href="css/table-style.css" />
+	<ui:include src="/_Links.xhtml"></ui:include>
+</h:head>
+
+<h:body>
+	<ui:include src="/_menu_sin_loguear.xhtml"></ui:include>
+
+	<br></br><br></br>
+	<div class="col-md-offset-4 col-md-5">
+		<h2 class="text-center">Tareas Públicas</h2>
+		<h:dataTable value="#{tareaBean.listaDeTareasAnonimas}" var="tarea"
+			styleClass="table " headerClass="info"
+			rowClasses="order-table-odd-row,order-table-even-row">
+
+			<h:column>
+				<f:facet name="header">Nombre</f:facet>    				
+      		#{tarea.nombre}
+  		 	</h:column>
+			<h:column>
+				<f:facet name="header">descripcion</f:facet>    				
+      		#{tarea.descripcion}
+  		 	</h:column>
+
+
+			<h:column>
+				<f:facet name="header">Editar</f:facet>
+				<h:form>
+
+
+					<h:commandButton value="Ver" class="btn btn-info"
+						action="#{tareaBean.verTareaAnonima}">
+
+						<f:param name="idTareaABM" value="#{tarea.id}" />
+
+					</h:commandButton>
+				</h:form>
+
+			</h:column>
+
+
+
+		</h:dataTable>
+	</div>
+</h:body>
+</html>

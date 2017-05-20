@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+	<title>Buscar usuario</title>
+	<link rel="stylesheet" type="text/css" href="css/table-style.css" />
+	<ui:include src="/_Links.xhtml"></ui:include>
+</h:head>
+
+<h:body>
+	<ui:include src="/_menu_Nomal.xhtml"></ui:include>
+<br></br><br></br>
+	<div class=" col-md-offser-4 col-md-4">
+	
+				<h2 class="text-center">Agregar participante</h2>
+				<h:form>
+
+					<div class="form-group col-md-12">
+						<label for="" class="control-label">NickName</label>
+						<div class="">
+							<h:inputText value="#{tareaBean.participanteNickName}" id="participanteNickName"
+								class="form-control">
+							</h:inputText>
+						</div>
+					</div>
+
+
+
+					<div class="col-md-2">
+
+						<h:commandButton action="#{tareaBean.buscarParticipantePost}" value="Login"
+							styleClass="btn btn-success">
+
+						</h:commandButton>
+					</div>
+
+				</h:form>
+			</div>
+		
+	<div class=" col-md-offser-4 col-md-4">
+		<h:dataTable value="#{tareaBean.listaDeParicipantesBuscados}" var="participante"
+			styleClass="table" headerClass="info"
+			rowClasses="order-table-odd-row,order-table-even-row">
+
+			<h:column>
+				<f:facet name="header">Nombre</f:facet>    				
+      		#{participante.nombre}
+  		 	</h:column>
+  		 	
+  		 	<h:column>
+				<f:facet name="header">NickName</f:facet>    				
+      		#{participante.nickName}
+  		 	</h:column>
+  		 	
+  		 		<h:column>
+				<f:facet name="header">Agregar</f:facet>    				
+      			<h:form>
+      				<div class="form-group">
+					<label for ="" class="control-label">Modo</label>
+					<div class="">
+				
+					<h:selectOneMenu styleClass="form-control" id="accesoTarea" value="#{tareaBean.accesoTarea}"> 
+						 		
+						 			<f:selectItem itemValue="lectura" itemLabel="lectura" />
+						 			<f:selectItem itemValue="escritura" itemLabel="escritura" />
+						 	
+					</h:selectOneMenu>
+					</div>
+		</div>
+					<h:commandButton value="Agregar participante" class="btn btn-success"
+						action="#{tareaBean.agregarParicipanteAUnaTarea}">
+						<f:param name="participanteABM" value="#{participante.id}" />
+					</h:commandButton>
+				</h:form>
+  		 	</h:column>
+  	</h:dataTable>
+	</div>
+
+
+
+
+</h:body>
+</html>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title>SCAW - Presentación de JSF</title>
+	<link rel="stylesheet" type="text/css" href="css/table-style.css" />
+</h:head>
+
+<h:body>
+	<h2>Bienvenido!</h2>
+	<h:form>
+		<h:outputLabel value="#{personBean.firstName}" />
+		<br />
+		<br />
+		<h:outputLabel value="#{personBean.lastName}" />
+		<br />
+		<br />
+		<h:outputLabel value="#{personBean.email}" />
+		<br />
+		<br />
+		<h:commandButton value="Back" action="index" >
+	        <f:ajax render="@form" />
+		</h:commandButton>
+	</h:form>
+
+	<br />"src/main/webapp/prueba.xhtml"
+	<br />
+
+	<h:dataTable value="#{personBean.findAll}" var="person"
+		styleClass="order-table" headerClass="order-table-header"
+		rowClasses="order-table-odd-row,order-table-even-row">
+
+		<h:column>
+			<f:facet name="header">Nombre</f:facet>    				
+      		#{person.firstName}
+  		 </h:column>
+
+		<h:column>
+			<f:facet name="header">Apellido</f:facet>
+      		#{person.lastName}
+   		</h:column>
+
+		<h:column>
+			<f:facet name="header">Email</f:facet>
+    	  	#{person.email}
+	   </h:column>
+
+	</h:dataTable>
+
+</h:body>
+</html>

@@ -1,0 +1,25 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+	<ui:include src="_Cabecera.xhtml"></ui:include>
+
+	<div class="menu">
+		<h:form>
+			<h:commandButton class="col-md-2 btn btn-info"
+				value="Aprobar Usuarios"
+				action="administrador_usuariosNoAprobados_listado"></h:commandButton>
+		</h:form>
+		<h:form>
+			<h:commandButton class="col-md-2 btn btn-info"
+				value="Administrar Usuarios" action="administrador_usuarios_listado"></h:commandButton>
+		</h:form>
+		<h:form>
+			<h:commandButton class="col-md-2 btn btn-danger"
+				value="Cerrar Session" action="#{usuarioBean.cerrarSesion}"></h:commandButton>
+		</h:form>
+	</div>
+
+
+</ui:composition>

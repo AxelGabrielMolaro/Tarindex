@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+	<title>Usuarios pendientes de aprobación</title>
+	<link rel="stylesheet" type="text/css" href="css/table-style.css" />
+	<ui:include src="/_Links.xhtml"></ui:include>
+</h:head>
+
+<h:body>
+	<ui:include src="/_menu_Administrador.xhtml"></ui:include>
+
+	<div class="col-md-offset-4 col-md-5">
+		<h:dataTable
+			value="#{usuarioBean.listaDeUsuariosPendientesDeAprobacion}"
+			var="usuario" styleClass="table" headerClass="info"
+			rowClasses="order-table-odd-row,order-table-even-row">
+
+			<h:column>
+				<f:facet name="header">Nombre</f:facet>    				
+      		#{usuario.nombre}
+  		 </h:column>
+
+			<h:column>
+				<f:facet name="header">Apellido</f:facet>
+      		#{usuario.apellido}
+   		</h:column>
+
+			<h:column>
+				<f:facet name="header">NickName</f:facet>
+    	  	#{usuario.nickName}
+	   </h:column>
+			<h:column>
+				<f:facet name="header">Contraseña</f:facet>
+    	  	#{usuario.contrasena}
+	   </h:column>
+			<h:column>
+				<f:facet name="header">Tipo</f:facet>
+    	  	#{usuario.tipo}
+	   </h:column>
+	   <h:column>
+	   	 <f:facet name="header">Esta aprobado 0:no 1:si</f:facet>
+    	  	#{usuario.estaAprobado}
+	   </h:column>
+			<h:column>
+				<f:facet name="header">Aprobar</f:facet>
+				<h:form>
+
+
+					<h:commandButton value="Aprobar" class="btn btn-success"
+						action="#{usuarioBean.aprobarUnUsuario}">
+
+						<f:param name="idUsuarioAAparobar" value="#{usuario.id}" />
+
+					</h:commandButton>
+				</h:form>
+
+			</h:column>
+			<h:column>
+				<f:facet name="header">Aprobar</f:facet>
+				<h:form>
+					<h:commandButton value="Rechazar" class="btn btn-danger"
+						action="#{usuarioBean.rechazarUnUsuario}">
+						<f:param name="idUsuarioARechazar" value="#{usuario.id}" />
+					</h:commandButton>
+				</h:form>
+			</h:column>
+
+		</h:dataTable>
+	</div>
+
+
+</h:body>
+</html>

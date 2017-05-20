@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+	<title>Listado de tareas</title>
+	<link rel="stylesheet" type="text/css" href="css/table-style.css" />
+	<ui:include src="/_Links.xhtml"></ui:include>
+</h:head>
+
+<h:body>
+	<ui:include src="/_menu_Nomal.xhtml"></ui:include>
+
+	<div class="col-md-12">
+		<div class="row">
+			<div class="col-md-offset-4 col-md-4">
+				<div class="col-md-5"><h2>#{tareaBean.nombreTarea} </h2> </div>  				
+	      			<div class="col-md-5">
+	      			<br></br>
+	      			<h:form>
+	      				<h:commandButton value="Editar tarea" class="btn btn-warning"
+						action="normal_editar_tarea">
+						
+						
+					</h:commandButton>
+					</h:form></div>
+			</div>
+
+
+		</div>
+		<div class="row ">
+
+			<div class="col-md-offset-4 col-md-4">
+				<div class="col-md-4">Descripcion :
+				#{tareaBean.descripcionTarea}</div>
+			<div class="col-md-4">Acceso : #{tareaBean.accesoTarea}</div>
+			<div class="col-md-4">Estado : Pendiente</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-12">
+		<div class="row">
+			<div class="col-md-offset-4 col-md-4">
+				<h3>Participantes</h3>
+			</div>
+
+</div>
+		</div>
+	<div class="row">
+			<div class="col-md-offset-4 col-md-4">
+				<h:dataTable value="#{tareaBean.listaDeParicipantes}" var="participante"
+			styleClass="table" headerClass="success"
+			rowClasses="order-table-odd-row,order-table-even-row">
+				
+				<h:column>
+					<f:facet name="header">NickName</f:facet>    				
+	      		#{participante.nickName}
+	  		 	</h:column>
+	  		 	<h:column>
+					<f:facet name="header">Nombre</f:facet>    				
+	      		#{participante.nombre}
+	  		 	</h:column>
+	  		 	<h:column>
+					<f:facet name="header">Agregar Paricipante</f:facet>    				
+	      			<h:form>
+	      				<h:commandButton value="Agregar participante" class="btn btn-info"
+						action="normal_buscar_participante">
+						
+					</h:commandButton>
+	      			</h:form>
+	  		 	</h:column>
+	  		 	<h:column>
+					<f:facet name="header">Agregar Paricipante</f:facet>    				
+	      			<h:form>
+	      				<h:commandButton value="Eliminar participante" class="btn btn-danger"
+						action="#{tareaBean.eliminarParicipanteAUnaTarea}">
+						<f:param name="participanteABM" value="#{participante.id}" />
+						
+					</h:commandButton>
+	      			</h:form>
+	  		 	</h:column>
+			</h:dataTable>
+			</div>
+	</div>
+
+
+
+
+</h:body>
+</html>

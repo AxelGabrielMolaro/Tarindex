@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+	<title>Listado de tareas</title>
+	<link rel="stylesheet" type="text/css" href="css/table-style.css" />
+	<ui:include src="/_Links.xhtml"></ui:include>
+</h:head>
+
+<h:body>
+	<ui:include src="/_menu_Nomal.xhtml"></ui:include>
+
+
+	<div class="col-md-offset-4 col-md-5">
+		<h2 class="text-center">Tareas completas</h2>
+		<h:dataTable value="#{tareaBean.listaDeTareasCompletas}" var="tarea"
+			styleClass="table" headerClass="info"
+			rowClasses="order-table-odd-row,order-table-even-row">
+
+			<h:column>
+				<f:facet name="header">Nombre</f:facet>    				
+      		#{tarea.nombre}
+  		 	</h:column>
+			<h:column>
+				<f:facet name="header">descripcion</f:facet>    				
+      		#{tarea.descripcion}
+  		 	</h:column>
+
+
+			<h:column>
+				<f:facet name="header">Volver pendiente</f:facet>
+				<h:form>
+
+
+					<h:commandButton value="Volver pendiente" class="btn btn-warning"
+						action="#{tareaBean.hacerPendienteUnaTrea}">
+
+						<f:param name="idTareaABM" value="#{tarea.id}" />
+
+					</h:commandButton>
+				</h:form>
+
+			</h:column>
+			<h:column>
+				<f:facet name="header">Borrar</f:facet>
+				<h:form>
+					<h:commandButton value="Borrar" class="btn btn-danger"
+						action="#{tareaBean.eliminarUnaTrea}">
+						<f:param name="idTareaABM" value="#{tarea.id}" />
+					</h:commandButton>
+				</h:form>
+			</h:column>
+
+		</h:dataTable>
+	</div>
+	<div class="col-md-offset-4 col-md-5">
+		<h2 class="text-center">Tareas pendientes escritura</h2>
+		<h:dataTable value="#{tareaBean.listaDeTareasPendientesEscritura}" var="tarea"
+			styleClass="table" headerClass="success"
+			rowClasses="order-table-odd-row,order-table-even-row">
+
+			<h:column>
+				<f:facet name="header">Nombre</f:facet>    				
+      		#{tarea.nombre}
+  		 	</h:column>
+			<h:column>
+				<f:facet name="header">descripcion</f:facet>    				
+      		#{tarea.descripcion}
+  		 	</h:column>
+
+
+			<h:column>
+				<f:facet name="header">Editar</f:facet>
+				<h:form>
+
+
+					<h:commandButton value="Ver" class="btn btn-info"
+						action="#{tareaBean.verTarea}">
+
+						<f:param name="idTareaABM" value="#{tarea.id}" />
+
+					</h:commandButton>
+				</h:form>
+
+			</h:column>
+			<h:column>
+				<f:facet name="header">Completar</f:facet>
+				<h:form>
+					<h:commandButton value="Completar" class="btn btn-success"
+						action="#{tareaBean.hacerCompletaUnaTrea}">
+						<f:param name="idTareaABM" value="#{tarea.id}" />
+					</h:commandButton>
+				</h:form>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Borrar</f:facet>
+				<h:form>
+					<h:commandButton value="Borrar" class="btn btn-danger"
+						action="#{tareaBean.eliminarUnaTrea}">
+						<f:param name="idTareaABM" value="#{tarea.id}" />
+					</h:commandButton>
+				</h:form>
+			</h:column>
+
+		</h:dataTable>
+	</div>
+	<div class="col-md-offset-4 col-md-5">
+		<h2 class="text-center">Tareas pendientes lectura</h2>
+		<h:dataTable value="#{tareaBean.listaDeTareasPendientesLectura}" var="tarea"
+			styleClass="table" headerClass="success"
+			rowClasses="order-table-odd-row,order-table-even-row">
+
+			<h:column>
+				<f:facet name="header">Nombre</f:facet>    				
+      		#{tarea.nombre}
+  		 	</h:column>
+			<h:column>
+				<f:facet name="header">descripcion</f:facet>    				
+      		#{tarea.descripcion}
+  		 	</h:column>
+
+
+			<h:column>
+				<f:facet name="header">Editar</f:facet>
+				<h:form>
+
+
+					<h:commandButton value="Ver" class="btn btn-info"
+						action="#{tareaBean.verTareaLectura}">
+
+						<f:param name="idTareaABM" value="#{tarea.id}" />
+
+					</h:commandButton>
+				</h:form>
+
+			</h:column>
+
+
+
+		</h:dataTable>
+	</div>
+	<div class="col-md-offset-4 col-md-5">
+		<h2 class="text-center">Tareas TODO</h2>
+		<h:dataTable value="#{tareaBean.listaDeTareasAsignadas}" var="tarea"
+			styleClass="table" headerClass="success"
+			rowClasses="order-table-odd-row,order-table-even-row">
+
+			<h:column>
+				<f:facet name="header">Nombre</f:facet>    				
+      		#{tarea.nombre}
+  		 	</h:column>
+			<h:column>
+				<f:facet name="header">descripcion</f:facet>    				
+      		#{tarea.descripcion}
+  		 	</h:column>
+
+
+			<h:column>
+				<f:facet name="header">Editar</f:facet>
+				<h:form>
+
+
+					<h:commandButton value="Ver" class="btn btn-info"
+						action="#{tareaBean.verTarea}">
+
+						<f:param name="idTareaABM" value="#{tarea.id}" />
+
+					</h:commandButton>
+				</h:form>
+
+			</h:column>
+			<h:column>
+				<f:facet name="header">Completar</f:facet>
+				<h:form>
+					<h:commandButton value="Completar" class="btn btn-success"
+						action="#{tareaBean.hacerCompletaUnaTrea}">
+						<f:param name="idTareaABM" value="#{tarea.id}" />
+					</h:commandButton>
+				</h:form>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Borrar</f:facet>
+				<h:form>
+					<h:commandButton value="Borrar" class="btn btn-danger"
+						action="#{tareaBean.eliminarUnaTrea}">
+						<f:param name="idTareaABM" value="#{tarea.id}" />
+					</h:commandButton>
+				</h:form>
+			</h:column>
+
+		</h:dataTable>
+	</div>
+
+</h:body>
+</html>
