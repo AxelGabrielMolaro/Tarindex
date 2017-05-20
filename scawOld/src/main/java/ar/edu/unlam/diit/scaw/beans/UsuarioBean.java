@@ -39,7 +39,8 @@ public class UsuarioBean implements Serializable {
 	private Integer estaAprobadoABM;
 	private String nickNameABM ;
 	private String mensajeDeError ;
-
+	private String mensajeError2;
+	
 	private static final long serialVersionUID = 1L;
 	private Integer id  ;
 	private String nombre ;
@@ -83,6 +84,16 @@ public class UsuarioBean implements Serializable {
 		this.tipoABM = null;
 		this.estaAprobadoABM = null;
 		this.nickNameABM = null;
+		this.mensajeDeError ="";
+		this.mensajeError2 = "";
+	}
+	/**
+	 * Resetea los msj de error para que no queden todos en pantalla 
+	 */
+	public void resetearMensajesDeError ()
+	{
+		this.mensajeDeError ="";
+		this.mensajeError2 = "";
 	}
 	
 	/**es un metodo que si te da ok devuelve un usuario y seteea los valores de un usuario
@@ -93,42 +104,53 @@ public class UsuarioBean implements Serializable {
 	public String login() {
 		
 
-		Usuario usuarioBuscado = usuarioService.login(this.nickName, this.contrasena) ;
-		
-		
-		if (usuarioBuscado == null) {
-			System.out.println("1");
-			resetearElBean();
-			return "index";
+		Usuario usuarioBuscado;
+		try {
+			usuarioBuscado = usuarioService.login(this.nickName, this.contrasena);
+			if (usuarioBuscado == null) {
+				resetearElBean();
+				return "index";
 
+				
+			} else if(usuarioBuscado.getEstaAprobado()==0) {
+				resetearElBean();
+				return "index";
+			}
+			else if (usuarioBuscado.getTipo().equals("normal"))
+			{
+				
+				this.id = usuarioBuscado.getId();
+				this.nickName = usuarioBuscado.getNickName();
+				this.nombre = usuarioBuscado.getNombre();
+				this.apellido = usuarioBuscado.getApellido();
+				this.tipo = usuarioBuscado.getTipo();
+				this.estaAprobado = usuarioBuscado.getEstaAprobado();
+				
+				return "normalHome";
+			}
+			else
+			{
+				this.id = usuarioBuscado.getId();
+				this.nickName = usuarioBuscado.getNickName();
+				this.nombre = usuarioBuscado.getNombre();
+				this.apellido = usuarioBuscado.getApellido();
+				this.tipo = usuarioBuscado.getTipo();
+				this.estaAprobado = usuarioBuscado.getEstaAprobado();
+				return "administradorHome";
+				
+			}
 			
-		} else if(usuarioBuscado.getEstaAprobado()==0) {
-			resetearElBean();
-			return "index";
+		} catch (Exception e) {
+			resetearMensajesDeError();
+			this.mensajeError2 = e.getMessage();
+			
 		}
-		else if (usuarioBuscado.getTipo().equals("normal"))
-		{
-			
-			this.id = usuarioBuscado.getId();
-			this.nickName = usuarioBuscado.getNickName();
-			this.nombre = usuarioBuscado.getNombre();
-			this.apellido = usuarioBuscado.getApellido();
-			this.tipo = usuarioBuscado.getTipo();
-			this.estaAprobado = usuarioBuscado.getEstaAprobado();
-			
-			return "normalHome";
-		}
-		else
-		{
-			this.id = usuarioBuscado.getId();
-			this.nickName = usuarioBuscado.getNickName();
-			this.nombre = usuarioBuscado.getNombre();
-			this.apellido = usuarioBuscado.getApellido();
-			this.tipo = usuarioBuscado.getTipo();
-			this.estaAprobado = usuarioBuscado.getEstaAprobado();
-			return "administradorHome";
-			
-		}
+		
+		
+		return "index";
+		
+		
+		
 			
 
 	}
@@ -247,6 +269,7 @@ public class UsuarioBean implements Serializable {
 			
 		
 		} catch (Exception e) {
+			resetearMensajesDeError();
 			this.mensajeDeError = e.getMessage();
 			return "index";
 		}
@@ -327,6 +350,14 @@ public class UsuarioBean implements Serializable {
 
 	public UsuarioService getUsuarioService() {
 		return usuarioService;
+	}
+
+	public String getMensajeError2() {
+		return mensajeError2;
+	}
+
+	public void setMensajeError2(String mensajeError2) {
+		this.mensajeError2 = mensajeError2;
 	}
 
 	public void setUsuarioService(UsuarioService usuarioService) {

@@ -3,7 +3,7 @@ import java.lang.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-class HerramientasExprecionesRegulares
+public class HerramientasExprecionesRegulares
 {  
     public static Boolean tieneComillasElString(String stringAVer)
     {
