@@ -5,21 +5,33 @@
 
 	<ui:include src="_Cabecera.xhtml"></ui:include>
 
-	<div class="menu">
-		<h:form>
-			<h:commandButton class="col-md-2 btn btn-info"
+	
+
+	<nav class=" navbar-default" role="navigation">
+  <div class="collapse navbar-collapse ">
+    <ul class="nav navbar-nav">
+      <li class="active"><h:form>
+			<h:commandButton class="btn active btn-info"
 				value="Aprobar Usuarios"
 				action="administrador_usuariosNoAprobados_listado"></h:commandButton>
-		</h:form>
-		<h:form>
-			<h:commandButton class="col-md-2 btn btn-info"
+		</h:form></li>
+		  <li class="active"><h:form>
+			<h:commandButton class="btn active btn-info"
 				value="Administrar Usuarios" action="administrador_usuarios_listado"></h:commandButton>
-		</h:form>
+		</h:form></li>
+		
+		
+		<li class="active">
+		
+		
 		<h:form>
-			<h:commandButton class="col-md-2 btn btn-danger"
+			<h:commandButton class="btn active btn-danger"	
 				value="Cerrar Session" action="#{usuarioBean.cerrarSesion}"></h:commandButton>
 		</h:form>
-	</div>
+		</li>
+      </ul>
+    </div>
+</nav>
 
 
 </ui:composition>

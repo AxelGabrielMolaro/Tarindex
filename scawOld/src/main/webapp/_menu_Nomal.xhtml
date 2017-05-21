@@ -5,35 +5,51 @@
 
 	<ui:include src="_Cabecera.xhtml"></ui:include>
 
-	<div class="menu">
-		<h:form>
-			<h:commandButton class="col-md-2 btn btn-info"
+	
+	
+	<nav class=" navbar-default" role="navigation">
+  <div class="collapse navbar-collapse ">
+    <ul class="nav navbar-nav">
+    
+     <li class="active"><h:form>
+			<h:commandButton class="btn active btn-info"
 				value="Agregar tarea"
 				action="#{tareaBean.agregarTarea}">
-				<f:param name="idUsuarioActual" value="#{usuarioBean.id}" />
-				</h:commandButton>
-		</h:form>
-		<h:form>
-			<h:commandButton class="col-md-2 btn btn-info"
+				<f:param name="idUsuarioActual" value="#{usuarioBean.id}" /></h:commandButton>
+		
+		
+		</h:form></li>
+    
+      <li class="active"><h:form>
+			<h:commandButton class="btn active btn-info"
 				value="Ver tareas"
 				action="#{tareaBean.verTareas}">
 				
-				<f:param name="idUsuarioActual" value="#{usuarioBean.id}" />
-				</h:commandButton>
-		</h:form>
-		<h:form>
-			<h:commandButton class="col-md-2 btn btn-info"
+				<f:param name="idUsuarioActual" value="#{usuarioBean.id}" /></h:commandButton>
+		
+		
+		</h:form></li>
+		  <li class="active"><h:form>
+			<h:commandButton class="btn active btn-info"
 				value="Asignar una nueva tarea a un usuario"
 				action="#{tareaBean.asignarTarea}">
 				
-				<f:param name="idUsuarioActual" value="#{usuarioBean.id}" />
-				</h:commandButton>
-		</h:form>
+				<f:param name="idUsuarioActual" value="#{usuarioBean.id}" /></h:commandButton>
+		</h:form></li>
+		
+		
+		<li class="active">
+		
+		
 		<h:form>
-			<h:commandButton class="col-md-2 btn btn-danger"
+			<h:commandButton class="btn active btn-danger"	
 				value="Cerrar Session" action="#{usuarioBean.cerrarSesion}"></h:commandButton>
 		</h:form>
-	</div>
+		</li>
+      </ul>
+    </div>
+</nav>
+
 
 
 </ui:composition>

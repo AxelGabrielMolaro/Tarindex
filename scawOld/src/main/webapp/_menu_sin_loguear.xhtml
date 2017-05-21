@@ -5,17 +5,28 @@
 
 	<ui:include src="_Cabecera.xhtml"></ui:include>
 	
-	<div class="menu">
-	
-		<h:form>
-			<h:commandButton class="col-md-2 btn btn-danger"
+
+
+	<nav class=" navbar-default" role="navigation">
+  <div class="collapse navbar-collapse ">
+    <ul class="nav navbar-nav">
+      <li class="active"><h:form>
+			<h:commandButton class="btn active btn-danger"
 				value="Inicio" action="index"></h:commandButton>
-		</h:form>
+		</h:form></li>
+		<li class="active">
 		<h:form>
-			<h:commandButton class="col-md-2 btn btn-info"
+			<h:commandButton class="btn active btn-info"	
 				value="Listado de tareas" action="tareas_anonimas_listado"></h:commandButton>
 		</h:form>
-	</div>
+		</li>
+      </ul>
+    </div>
+</nav>
+	
 
+
+
+	
 
 </ui:composition>
