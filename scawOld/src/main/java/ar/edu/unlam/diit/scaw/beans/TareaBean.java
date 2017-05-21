@@ -227,7 +227,7 @@ public class TareaBean extends UsuarioBean implements Serializable  {
 		tareaService.asignarUnaTarea(nuevaTarea, this.participanteId);
 		
 		resetearElBean();
-		return "normal_home";
+		return "normal_tareas_listado";
 	}
 	
 	public List<Tarea> getListaDeTareasAsignadas() {

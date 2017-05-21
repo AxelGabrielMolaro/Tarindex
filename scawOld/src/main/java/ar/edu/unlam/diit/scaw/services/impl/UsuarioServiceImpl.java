@@ -144,6 +144,12 @@ public class UsuarioServiceImpl implements UsuarioService {
 	}
 
 	@Override
+	public List<Usuario> getListaDeUsuariosNormales() {
+		
+		return usuarioDao.getListaDeUsuariosNormales();
+	}
+	
+	@Override
 	public void eliminarUnUsuarioPorId(Integer id) {
 		// TODO Auto-generated method stub
 		usuarioDao.eliminarUnUsuarioPorId(id);

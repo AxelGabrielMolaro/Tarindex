@@ -181,6 +181,12 @@ public class UsuarioBean implements Serializable {
 		
 	}
 	
+	public List<Usuario> getListaDeUsuariosNormales()
+	{
+		return usuarioService.getListaDeUsuariosNormales();
+		
+	}
+	
 	/**Es para no editarse a si mismo
 	 * @return
 	 */

@@ -43,4 +43,7 @@ public interface UsuarioService {
 		
 		//asignar tarea
 		public List<Usuario> getListaDeUsuariosMenosElUsuarioActualYPorTipo(Integer idUsuarioActual,String tipo);
+		
+		//asignar tarea
+				public List<Usuario> getListaDeUsuariosNormales();
 }

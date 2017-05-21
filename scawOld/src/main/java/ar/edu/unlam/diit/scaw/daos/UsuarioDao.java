@@ -39,5 +39,6 @@ public interface UsuarioDao {
 	
 	public void eliminarUnParticipanteAUnTareaPorIdDeUsuario(Integer idUsuarioEliminaro ,Integer idTarea);
 	
+	public List<Usuario> getListaDeUsuariosNormales();
 	
 }

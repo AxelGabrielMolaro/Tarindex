@@ -311,6 +311,16 @@ public class UsuarioDaoImpl implements UsuarioDao {
 	
 	
 	@Override
+	public List<Usuario> getListaDeUsuariosNormales() {
+		Map<String, Object> params = new HashMap<String, Object>();
+		String sql = "SELECT * FROM USUARIO WHERE TIPO = 'normal'";
+		
+		
+		List<Usuario> lista = jdbcTemplate.query(sql, params, new UsuarioMapper());
+		return lista;	
+	}
+	
+	@Override
 	public void agregarUnParticipanteAUnTareaPorIdDeUsuarioYModo(Integer idUsuarioNuevo, String modo,Integer idTarea) {
 		
 		Map<String, Object> params = new HashMap<String, Object>();
@@ -357,5 +367,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 		}
 
 	}
+
+	
 
 }
