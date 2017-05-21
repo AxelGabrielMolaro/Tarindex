@@ -1,76 +1,75 @@
 @CHARSET "ISO-8859-1";
 
-*{
-
-	font-family:sans-serif;
+* {
+	font-family: sans-serif;
 }
 
+.msjError {
+	border: 1px solid #981010;
+	background-color: #AE1E1E;
+	padding-top: 2%;
+	padding-bottom: 2%;
+	padding-right: 1%;
+	padding-left: 1%;
+	width: 100%;
+	height: auto;
+	min-height: 0;
+}
 
-.formularioHeader{
-	
+.formularioHeader {
 	background-color: #76B5E1;
 	padding-top: 20px;
-	padding-bottom:42px; 
-	color:white;
+	padding-bottom: 42px;
+	color: white;
 }
-.cabecera{
-	
+
+.cabecera {
 	padding-top: 40px;
-	padding-bottom:40px; 
+	padding-bottom: 40px;
 	text-align: center;
 	font-size: 20pt;
 	font-weight: bold;
-	font-family:sans-serif;
-	color:white;
+	font-family: sans-serif;
+	color: white;
 	background-color: #76B5E1;
 	margin-bottom: 0%;
 }
-.contenido{
-	
+
+.contenido {
 	background-color: #76B5E1
-	
 }
-.table{
-	
-	margin-top: 2%;		
+
+.table {
+	margin-top: 2%;
 }
-.table td
-{
+
+.table td {
 	width: 38px;
 	text-align: center;
 	border: 1px solid #76B5E1;
-	
 }
 
-.table tbody
-{
-	border-top:2px solid #76B5E1;
+.table tbody {
+	border-top: 2px solid #76B5E1;
 	border: 1px solid #76B5E1;
-	
 }
 
-.table th
-{	
+.table th {
 	width: 40px;
 	text-align: center;
 	padding-bottom: 1%;
-	
 }
 
-.fomularioTarindex{
-	
-	border : 1px solid #76B5E1;
+.fomularioTarindex {
+	border: 1px solid #76B5E1;
 	padding: 2%;
 	padding-top: 0%;
 }
 
-.fomularioTarindex .tituloForm
-{
+.fomularioTarindex .tituloForm {
 	background-color: #76B5E1;
-	color:white;
+	color: white;
 	padding: 2%;
 	padding-top: 4%;
 	padding-bottom: 4%;
-	
 }
-
