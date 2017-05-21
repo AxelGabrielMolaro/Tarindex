@@ -16,20 +16,20 @@ public class HerramientasEncriptar {
 	
 	
 	/**Encripta las contraseñas de una lista de usuaios
-	 * @param listaDeUsuarios
+	 * @param listaFinal
 	 * @return
 	 */
-	public static List<Usuario> encriptarContraseñaMD5TodaUnListaDeUsuarios(List<Usuario> listaDeUsuarios)
+	public static List<HerramientasUsuarioEspecial>  encriptarContraseñaMD5TodaUnListaDeUsuarios(List<HerramientasUsuarioEspecial> listaFinal)
 	{
 		
-		for(Usuario u : listaDeUsuarios)
+		for(HerramientasUsuarioEspecial u : listaFinal)
 		{
 			u.setContrasena(DigestUtils.md5Hex(u.getContrasena()));
 	
 		}
 		
 		
-		return listaDeUsuarios;
+		return listaFinal;
 	}
 	
 	

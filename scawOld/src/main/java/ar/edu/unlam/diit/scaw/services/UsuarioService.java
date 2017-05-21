@@ -2,6 +2,7 @@ package ar.edu.unlam.diit.scaw.services;
 
 import java.util.List;
 
+import ar.edu.unlam.diit.scaw.beans.heramientas.HerramientasUsuarioEspecial;
 import ar.edu.unlam.diit.scaw.entities.Usuario;
 
 public interface UsuarioService {
@@ -15,7 +16,7 @@ public interface UsuarioService {
 	//aciones del usuario admin 
 		public Usuario getUsuarioPorId(Integer id);
 		
-		public List<Usuario> getListaDeUsuariosMenosElUsuarioActual(Integer idUsuarioActual);
+		public List<HerramientasUsuarioEspecial> getListaDeUsuariosMenosElUsuarioActual(Integer idUsuarioActual);
 		
 		public List<Usuario> getListaDeUsuariosQueNoEstanAprobados();
 		

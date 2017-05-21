@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import ar.edu.unlam.diit.scaw.beans.heramientas.HerramientaValidaciones;
 import ar.edu.unlam.diit.scaw.beans.heramientas.HerramientasEncriptar;
 import ar.edu.unlam.diit.scaw.beans.heramientas.HerramientasExprecionesRegulares;
+import ar.edu.unlam.diit.scaw.beans.heramientas.HerramientasUsuarioEspecial;
 import ar.edu.unlam.diit.scaw.daos.PersonDao;
 import ar.edu.unlam.diit.scaw.daos.UsuarioDao;
 import ar.edu.unlam.diit.scaw.daos.impl.UsuarioDaoImpl;
@@ -49,9 +50,25 @@ public class UsuarioServiceImpl implements UsuarioService {
 	}
 
 	@Override
-	public List<Usuario> getListaDeUsuariosMenosElUsuarioActual(Integer idUsuarioActual) {
+	public List<HerramientasUsuarioEspecial> getListaDeUsuariosMenosElUsuarioActual(Integer idUsuarioActual) {
 		List<Usuario> listaSinEncriptar = usuarioDao.getListaDeUsuariosMenosElUsuarioActual(idUsuarioActual);
-		return HerramientasEncriptar.encriptarContraseñaMD5TodaUnListaDeUsuarios(listaSinEncriptar);
+		List<HerramientasUsuarioEspecial> listaFinal = new ArrayList<>();
+		
+		for(Usuario u: listaSinEncriptar)
+		{
+			if(u.getEstaAprobado().equals(0))
+			{
+				HerramientasUsuarioEspecial nuevoUser = new HerramientasUsuarioEspecial(u.getId(), u.getNombre(), u.getNickName(), u.getApellido(), u.getContrasena(), u.getTipo(), "No");
+				listaFinal.add(nuevoUser);
+			}
+			if(u.getEstaAprobado().equals(1))
+			{
+				HerramientasUsuarioEspecial nuevoUser = new HerramientasUsuarioEspecial(u.getId(), u.getNombre(), u.getNickName(), u.getApellido(), u.getContrasena(), u.getTipo(), "Si");
+				listaFinal.add(nuevoUser);
+			}
+		}
+		
+		return HerramientasEncriptar.encriptarContraseñaMD5TodaUnListaDeUsuarios(listaFinal);
 	}
 
 	@Override
@@ -78,15 +95,15 @@ public class UsuarioServiceImpl implements UsuarioService {
 	public void guardarUnUsuarioEnLaBDD(Usuario usuarioAGuardar) throws Exception {
 
 		if (HerramientasExprecionesRegulares.tieneComillasElString(usuarioAGuardar.getNombre())==false||usuarioAGuardar.getNombre().length()==0) {
-			throw new Exception("Error de registro : No use carácteres especiales como espacios , '',_ , et");
+			throw new Exception("Error de registro : No use carácteres especiales como espacios , '',_ , etc");
 		} else if (HerramientasExprecionesRegulares.tieneComillasElString(usuarioAGuardar.getApellido())==false||usuarioAGuardar.getApellido().length()==0) {
-			throw new Exception("Error de registro : No use carácteres especiales como espacios , '',_ , et");
+			throw new Exception("Error de registro : No use carácteres especiales como espacios , '',_ , etc");
 		} else if (HerramientasExprecionesRegulares.tieneComillasElString(usuarioAGuardar.getContrasena())==false||usuarioAGuardar.getContrasena().length()==0) {
-			throw new Exception("Error de registro : No use carácteres especiales como espacios , '',_ , et");
+			throw new Exception("Error de registro : No use carácteres especiales como espacios , '',_ , etc");
 		} else if (HerramientasExprecionesRegulares.tieneComillasElString(usuarioAGuardar.getNickName())==false||usuarioAGuardar.getNickName().length()==0) {
-			throw new Exception("Error de registro : No use carácteres especiales como espacios , '',_ , et");
+			throw new Exception("Error de registro : No use carácteres especiales como espacios , '',_ , etc");
 		}else if (HerramientaValidaciones.elLargoStringPasadoEsMayorALaCantidadPasada(usuarioAGuardar.getContrasena(), 7)==false) {
-			throw new Exception("Error de registro : No use carácteres especiales como espacios , '',_ , et");
+			throw new Exception("Error de registro : Ingrese una contraseña de por lo menos 8 carácteres");
 		}
 
 		if (!(usuarioDao.getUsuarioPorNickName(usuarioAGuardar.getNickName()) == null)) {
@@ -102,22 +119,21 @@ public class UsuarioServiceImpl implements UsuarioService {
 	@Override
 	public void modificarUnUsuarioPorId(Integer id, String nickname, String nombre, String apellido, String contraseña,
 			String tipo, Integer estaAprobado) throws Exception{
-		
+		System.out.println(tipo);
 
 		if (HerramientasExprecionesRegulares.tieneComillasElString(nombre)==false|nombre.length()==0) {
-			throw new Exception("Error de edicion : No use carácteres especiales como espacios '',_ , etc");
+			throw new Exception("Error de edicion : No use carácteres especiales como espacios '',_ , etc  ");
 		} else if (HerramientasExprecionesRegulares.tieneComillasElString(apellido)==false||apellido.length()==0) {
-			throw new Exception("Error de edicion : No use carácteres especiales como espacios '',_ , etc");
+			throw new Exception("Error de edicion : No use carácteres especiales como espacios '',_ , etc  ");
 		} else if (HerramientasExprecionesRegulares.tieneComillasElString(contraseña)==false||contraseña.length()==0) {
-			throw new Exception("Error de edicion : No use carácteres especiales como espacios '',_ , etc");
+			throw new Exception("Error de edicion : No use carácteres especiales como espacios '',_ , etc  ");
 		}else if (HerramientasExprecionesRegulares.tieneComillasElString(contraseña)==false||contraseña.length()==0) {
-			throw new Exception("Error de edicion : No use carácteres especiales como espacios '',_ , etc");
-		}else if (HerramientasExprecionesRegulares.tieneComillasElString(tipo)==false||(tipo!= "normal" && tipo !="administrador")) {
-			throw new Exception("Error de edicion : No use carácteres especiales como espacios '',_ , etc");
-		}else if (HerramientasExprecionesRegulares.tieneComillasElString(estaAprobado.toString())==false||(estaAprobado!= 1 && estaAprobado !=2)) {
-			throw new Exception("Error de edicion : No use carácteres especiales como espacios '',_ , etc");
+			throw new Exception("Error de edicion : No use carácteres especiales como espacios '',_ , etc  ");
+		
+		}else if (HerramientasExprecionesRegulares.tieneComillasElString(estaAprobado.toString())==false||(estaAprobado!= 1 && estaAprobado !=0)) {
+			throw new Exception("Error de edicion : No use carácteres especiales como espacios '',_ , etc  ");
 		}else if (HerramientasExprecionesRegulares.tieneComillasElString(nickname)==false||nickname.length()==0) {
-			throw new Exception("Error de edicion : No use carácteres especiales como espacios '',_ , etc");
+			throw new Exception("Error de edicion : No use carácteres especiales como espacios '',_ , etc ");
 		}else if (HerramientaValidaciones.elLargoStringPasadoEsMayorALaCantidadPasada(contraseña, 7)==false) {
 			throw new Exception("Error de edición : Use una contraseña de por lo menos 8 carácteres");
 		}

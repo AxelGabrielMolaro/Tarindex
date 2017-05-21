@@ -43,7 +43,7 @@
     	  	#{usuario.tipo}
 	   </h:column>
 	    <h:column>
-	   	 <f:facet name="header">Esta aprobado 0:no 1:si</f:facet>
+	   	 <f:facet name="header" >¿Aprobado? </f:facet>
     	  	#{usuario.estaAprobado}
 	   </h:column>
 			<h:column>
@@ -61,7 +61,7 @@
 
 			</h:column>
 			<h:column>
-				<f:facet name="header">Aprobar</f:facet>
+				<f:facet name="header">Borrar</f:facet>
 				<h:form>
 					<h:commandButton value="Borrar" class="btn btn-danger"
 						action="#{usuarioBean.rechazarUnUsuario}">

@@ -17,6 +17,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.jsf.FacesContextUtils;
 
+import ar.edu.unlam.diit.scaw.beans.heramientas.HerramientasUsuarioEspecial;
 import ar.edu.unlam.diit.scaw.entities.TareaYAccede;
 import ar.edu.unlam.diit.scaw.entities.Usuario;
 import ar.edu.unlam.diit.scaw.services.PersonService;
@@ -174,7 +175,7 @@ public class UsuarioBean implements Serializable {
 	/**Es para no editarse a si mismo
 	 * @return
 	 */
-	public List<Usuario> getListaDeUsuariosMenosElUsuarioActual()
+	public List<HerramientasUsuarioEspecial> getListaDeUsuariosMenosElUsuarioActual()
 	{
 		return usuarioService.getListaDeUsuariosMenosElUsuarioActual(this.id);
 		
