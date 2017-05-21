@@ -39,6 +39,16 @@
 	background-color: #76B5E1
 }
 
+.con{
+	background-image: url("http://www.coca-colamexico.com.mx/content/dam/journey/mx/es/private/historia/2016/yo-me-subo/Agosto/tarea-yomesubo.jpg");
+	background-repeat: no-repeat;
+	background-size:100%;
+	width: 100%;
+	height: 600px;
+	background-attachment: scroll;
+	color:white;
+}
+
 .table {
 	margin-top: 2%;
 }

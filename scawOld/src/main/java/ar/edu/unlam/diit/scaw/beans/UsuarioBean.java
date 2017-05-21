@@ -1,10 +1,15 @@
 package ar.edu.unlam.diit.scaw.beans;
 
+import java.io.IOException;
 import java.io.Serializable;
+import java.lang.ProcessBuilder.Redirect;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.PostConstruct;
+import javax.ejb.BeforeCompletion;
+import javax.ejb.Init;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -28,7 +33,7 @@ import ar.edu.unlam.diit.scaw.services.impl.UsuarioServiceImpl;
 @SessionScoped
 public class UsuarioBean implements Serializable {
 
-	
+
 	
 	
 	// BAJA Y MODI
@@ -58,7 +63,8 @@ public class UsuarioBean implements Serializable {
 	UsuarioService usuarioService = (UsuarioService) context.getBean("usuarioService");
 
 	// UsuarioServiceImpl usuarioService= new UsuarioServiceImpl();
-
+	 
+	
 	public UsuarioBean() {
 		super();
 		this.nombre = null;
@@ -67,9 +73,12 @@ public class UsuarioBean implements Serializable {
 		this.tipo = null;
 		this.estaAprobado = null;
 		this.nickName = null;
+		
 
 	}
 
+	
+	
 	/**************************/
 	public void resetearElBean()
 	{
