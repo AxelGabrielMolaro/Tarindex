@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import ar.edu.unlam.diit.scaw.beans.heramientas.HerramientasExprecionesRegulares;
 import ar.edu.unlam.diit.scaw.daos.TareaDao;
 import ar.edu.unlam.diit.scaw.daos.impl.TareaDaoImpl;
 import ar.edu.unlam.diit.scaw.entities.AccedeTarea;
@@ -17,8 +18,14 @@ public class TareaServiceImpl implements TareaService{
 	TareaDaoImpl tareaDao = new TareaDaoImpl();
 	
 	@Override
-	public void eliminarUnaTareaDeLaBddPorIdDeTarea(Integer idTarea) {
-		tareaDao.eliminarUnaTareaDeLaBddPorIdDeTarea(idTarea);
+	public void eliminarUnaTareaDeLaBddPorIdDeTarea(Integer idTarea) throws Exception{
+		if(HerramientasExprecionesRegulares.tieneComillasElString(idTarea.toString())==false)
+			throw new Exception("Error al eliminar la tarea");
+			
+		if(tareaDao.getTareaPorId(idTarea)==null)
+			throw new Exception("Error al eliminar la tarea");
+		else tareaDao.eliminarUnaTareaDeLaBddPorIdDeTarea(idTarea);
+
 	}
 	
 	@Override

@@ -150,12 +150,17 @@ public class TareaBean extends UsuarioBean implements Serializable  {
 		return "normal_tareas_listado";
 	}
 	
-	public String eliminarUnaTrea()
+	public String eliminarUnaTrea() throws Exception
 	{
 		Map<String,String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
 		String id2 = params.get("idTareaABM");
 		Integer idTarea = Integer.parseInt(id2);
-		tareaService.eliminarUnaTareaDeLaBddPorIdDeTarea(idTarea);
+		try{
+			tareaService.eliminarUnaTareaDeLaBddPorIdDeTarea(idTarea);
+		}
+		catch(Exception e){
+			System.out.println("Hubo un error al eliminar la tarea.");
+		}
 		
 		return "normal_tareas_listado";
 	}

@@ -24,7 +24,7 @@ public interface TareaService {
 	
 	public void setearElEstadoDeUnaTareaPorIdTarea(Integer idTarea,String estado);
 	
-	public void eliminarUnaTareaDeLaBddPorIdDeTarea(Integer idTarea);
+	public void eliminarUnaTareaDeLaBddPorIdDeTarea(Integer idTarea) throws Exception;
 	
 	public void guardarUnaTareaEnLaBdd(Tarea tarea , Integer idUsuario);
 	
