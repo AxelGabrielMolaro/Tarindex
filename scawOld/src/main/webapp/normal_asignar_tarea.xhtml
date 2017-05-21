@@ -18,8 +18,8 @@
 	
 	<ui:include src="_menu_Nomal.xhtml"></ui:include>
 	
-	<div class="col-md-offset-4 col-md-4">
-		<h2 class="text-center"> Agregar tarea</h2>
+	<div class="col-md-offset-4 col-md-4 fomularioTarindex">
+		<h2 class="text-center tituloForm"> Agregar tarea</h2>
 		<h:form>
 			<div class="form-group">
 					<label for ="" class="control-label">Nombre</label>
@@ -70,12 +70,13 @@
 		</h:form>
 		<div class="form-group">
 					<label for ="" class="control-label"></label>
-					<div class="">
+					<div class="text-danger">
 				
-					
+						<h:outputText value="#{tareaBean.tareaErrorMensaje1}"></h:outputText>
 					</div>
 					
-		</div>
+		</div>	
+	
 		
 	</div>
 

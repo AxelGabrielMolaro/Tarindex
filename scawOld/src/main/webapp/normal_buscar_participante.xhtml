@@ -14,9 +14,9 @@
 <h:body>
 	<ui:include src="/_menu_Nomal.xhtml"></ui:include>
 <br></br><br></br>
-	<div class=" col-md-offser-4 col-md-4">
+	<div class=" col-md-offser-4 col-md-4 fomularioTarindex">
 	
-				<h2 class="text-center">Agregar participante</h2>
+				<h2 class="text-center tituloForm">Agregar participante</h2>
 				<h:form>
 
 					<div class="form-group col-md-12">
@@ -32,13 +32,21 @@
 
 					<div class="col-md-2">
 
-						<h:commandButton action="#{tareaBean.buscarParticipantePost}" value="Login"
+						<h:commandButton action="#{tareaBean.buscarParticipantePost}" value="Buscar"
 							styleClass="btn btn-success">
 
 						</h:commandButton>
 					</div>
 
 				</h:form>
+				<div class="form-group">
+					<label for ="" class="control-label"></label>
+					<div class="text-danger">
+				
+						<h:outputText value="#{tareaBean.tareaErrorMensaje1}"></h:outputText>
+					</div>
+					
+		</div>	
 			</div>
 		
 	<div class=" col-md-offser-4 col-md-4">
@@ -52,15 +60,15 @@
   		 	</h:column>
   		 	
   		 	<h:column>
-				<f:facet name="header">NickName</f:facet>    				
+				<f:facet name="header">NickName</f:facet>   				
+      			
       		#{participante.nickName}
-  		 	</h:column>
+  		 	</h:column >
   		 	
-  		 		<h:column>
-				<f:facet name="header">Agregar</f:facet>    				
+  		 		<h:column class="col-md-6">
+				<f:facet name="header" >Modo</f:facet>    				
       			<h:form>
-      				<div class="form-group">
-					<label for ="" class="control-label">Modo</label>
+      			
 					<div class="">
 				
 					<h:selectOneMenu styleClass="form-control" id="accesoTarea" value="#{tareaBean.accesoTarea}"> 
@@ -70,7 +78,16 @@
 						 	
 					</h:selectOneMenu>
 					</div>
-		</div>
+	
+					
+				</h:form>
+			
+  		 	</h:column>
+  		 	<h:column>
+				<f:facet name="header">Agregar</f:facet>    				
+      			<h:form>
+      			
+				
 					<h:commandButton value="Agregar participante" class="btn btn-success"
 						action="#{tareaBean.agregarParicipanteAUnaTarea}">
 						<f:param name="participanteABM" value="#{participante.id}" />

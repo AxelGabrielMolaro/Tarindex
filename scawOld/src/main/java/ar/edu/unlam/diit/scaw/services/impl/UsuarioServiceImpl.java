@@ -168,8 +168,13 @@ public class UsuarioServiceImpl implements UsuarioService {
 	}
 
 	@Override
-	public List<Usuario> getListaDeUsuariosQueNoParticipenEnUnaTareaYNickName(Integer idTarea, String nickName) {
-		// TODO Auto-generated method stub
+	public List<Usuario> getListaDeUsuariosQueNoParticipenEnUnaTareaYNickName(Integer idTarea, String nickName) throws Exception {
+		
+		if(HerramientasExprecionesRegulares.tieneLetrasNumeroYEspaciosSolamente(nickName)==false)
+		{
+			throw new Exception("Error al buscar : Carácteres no validos para la busqueda");
+		}
+		
 		List<Usuario> lista = usuarioDao.getListaDeUsuariosQueNoParticipenEnUnaTareaYNickName(idTarea, nickName);
 		List<Usuario> lista2 = usuarioDao.getListaDeUsuariosQuePertenecenAUnaTarea(idTarea);
 		List<Usuario> lista3 = new ArrayList<>();

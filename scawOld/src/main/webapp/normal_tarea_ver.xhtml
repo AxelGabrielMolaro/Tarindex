@@ -14,30 +14,41 @@
 <h:body>
 	<ui:include src="/_menu_Nomal.xhtml"></ui:include>
 
-	<div class="col-md-12">
-		<div class="row">
-			<div class="col-md-offset-4 col-md-4">
-				<div class="col-md-5"><h2>#{tareaBean.nombreTarea} </h2> </div>  				
-	      			<div class="col-md-5">
-	      			<br></br>
-	      			<h:form>
-	      				<h:commandButton value="Editar tarea" class="btn btn-warning"
+	<div class="col-md-offset-4">
+		<table>
+			<tr>
+				<td><h2>#{tareaBean.nombreTarea}</h2></td>
+			<td><h:form>
+					<h:commandButton value="Editar tarea" class="btn btn-warning"
 						action="normal_editar_tarea">
-						
-						
+
+
 					</h:commandButton>
-					</h:form></div>
-			</div>
+				</h:form></td>
+			<td><h:form>
+							<h:commandButton value="Agregar participante"
+								class="btn btn-info" action="normal_buscar_participante">
 
+							</h:commandButton>
+						</h:form></td>
+			</tr>
+			<tr>
+				<td>Descripcion :
+					#{tareaBean.descripcionTarea}</td>
+				<td>Acceso : #{tareaBean.accesoTarea}</td>
+				<td>Estado : Pendiente</td>
+			</tr>
+		</table>
+	</div>
 
-		</div>
+	<div class="col-md-12">
+		
 		<div class="row ">
 
 			<div class="col-md-offset-4 col-md-4">
-				<div class="col-md-4">Descripcion :
-				#{tareaBean.descripcionTarea}</div>
-			<div class="col-md-4">Acceso : #{tareaBean.accesoTarea}</div>
-			<div class="col-md-4">Estado : Pendiente</div>
+				<div class="col-md-4"></div>
+				<div class="col-md-4"></div>
+				<div class="col-md-4"></div>
 			</div>
 		</div>
 	</div>
@@ -47,43 +58,37 @@
 				<h3>Participantes</h3>
 			</div>
 
-</div>
+
 		</div>
+	</div>
 	<div class="row">
-			<div class="col-md-offset-4 col-md-4">
-				<h:dataTable value="#{tareaBean.listaDeParicipantes}" var="participante"
-			styleClass="table" headerClass="success"
-			rowClasses="order-table-odd-row,order-table-even-row">
-				
+		<div class="col-md-offset-4 col-md-4">
+			<h:dataTable value="#{tareaBean.listaDeParicipantes}"
+				var="participante" styleClass="table" headerClass="success"
+				rowClasses="order-table-odd-row,order-table-even-row">
+
 				<h:column>
 					<f:facet name="header">NickName</f:facet>    				
 	      		#{participante.nickName}
 	  		 	</h:column>
-	  		 	<h:column>
+				<h:column>
 					<f:facet name="header">Nombre</f:facet>    				
 	      		#{participante.nombre}
 	  		 	</h:column>
-	  		 	<h:column>
-					<f:facet name="header">Agregar Paricipante</f:facet>    				
-	      			<h:form>
-	      				<h:commandButton value="Agregar participante" class="btn btn-info"
-						action="normal_buscar_participante">
-						
-					</h:commandButton>
-	      			</h:form>
-	  		 	</h:column>
-	  		 	<h:column>
-					<f:facet name="header">Agregar Paricipante</f:facet>    				
-	      			<h:form>
-	      				<h:commandButton value="Eliminar participante" class="btn btn-danger"
-						action="#{tareaBean.eliminarParicipanteAUnaTarea}">
-						<f:param name="participanteABM" value="#{participante.id}" />
-						
-					</h:commandButton>
-	      			</h:form>
-	  		 	</h:column>
+
+				<h:column>
+					<f:facet name="header">Agregar Paricipante</f:facet>
+					<h:form>
+						<h:commandButton value="Eliminar participante"
+							class="btn btn-danger"
+							action="#{tareaBean.eliminarParicipanteAUnaTarea}">
+							<f:param name="participanteABM" value="#{participante.id}" />
+
+						</h:commandButton>
+					</h:form>
+				</h:column>
 			</h:dataTable>
-			</div>
+		</div>
 	</div>
 
 

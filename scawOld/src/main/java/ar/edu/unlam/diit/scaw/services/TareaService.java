@@ -26,13 +26,13 @@ public interface TareaService {
 	
 	public void eliminarUnaTareaDeLaBddPorIdDeTarea(Integer idTarea);
 	
-	public void guardarUnaTareaEnLaBdd(Tarea tarea , Integer idUsuario);
+	public void guardarUnaTareaEnLaBdd(Tarea tarea , Integer idUsuario) throws Exception;
 	
 	
-	public void modificarUnaTareaPorId(Integer id,String nombre,String descripcion,String acceso,String estado);
+	public void modificarUnaTareaPorId(Integer id,String nombre,String descripcion,String acceso,String estado) throws Exception;
 
 	//asignar tarea
-			public void asignarUnaTarea(Tarea tarea , Integer idUsuario);
+			public void asignarUnaTarea(Tarea tarea , Integer idUsuario) throws Exception;
 			
 			public  List<Tarea>  getListaDeTareasAsignadas(Integer idUsuarioActual);
 			

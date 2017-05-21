@@ -32,7 +32,7 @@ public interface UsuarioService {
 		
 		//tareas
 		
-		public List<Usuario> getListaDeUsuariosQueNoParticipenEnUnaTareaYNickName(Integer idTarea,String nickName);
+		public List<Usuario> getListaDeUsuariosQueNoParticipenEnUnaTareaYNickName(Integer idTarea,String nickName) throws Exception;
 		
 
 		public void agregarUnParticipanteAUnTareaPorIdDeUsuarioYModo(Integer idUsuarioNuevo,String modo ,Integer idTarea);

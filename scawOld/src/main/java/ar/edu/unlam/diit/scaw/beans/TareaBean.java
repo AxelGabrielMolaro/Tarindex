@@ -36,6 +36,9 @@ public class TareaBean extends UsuarioBean implements Serializable  {
 	
 	private static final long serialVersionUID = 10L;
 	
+	
+	//manejo de errores
+	private String tareaErrorMensaje1;
 
 	//participante 
 	private Integer idTareaABM;
@@ -90,14 +93,19 @@ public class TareaBean extends UsuarioBean implements Serializable  {
 		this.creadorTarea = null;
 	}
 	
+	public void resetearMensajesdeErrorTarea()
+	{
+		this.tareaErrorMensaje1 = "";
+	}
 	
 	public String agregarTarea()
 	{
+		ResetearTareaBean();
 		Map<String,String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
 		String id2 = params.get("idUsuarioActual");
 		Integer idUsuario = Integer.parseInt(id2);
 		this.idUsuarioActual = idUsuario;
-		
+		resetearMensajesdeErrorTarea();
 		
 		return "normal_agregar_tarea";
 		
@@ -113,9 +121,19 @@ public class TareaBean extends UsuarioBean implements Serializable  {
 		nuevaTarea.setDescripcion(this.descripcionTarea);
 		nuevaTarea.setAcceso(this.accesoTarea);
 		nuevaTarea.setEstado("pendiente");
-		tareaService.guardarUnaTareaEnLaBdd(nuevaTarea, this.idUsuarioActual);
-		resetearElBean();
-		return "normal_tareas_listado";
+		try {
+			resetearMensajesdeErrorTarea();
+			tareaService.guardarUnaTareaEnLaBdd(nuevaTarea, this.idUsuarioActual);
+			ResetearTareaBean();
+			return "normal_tareas_listado";
+		
+		} catch (Exception e) {
+
+			this.tareaErrorMensaje1 = e.getMessage();
+			return "normal_agregar_tarea";
+		}
+		
+		
 		
 		
 	}
@@ -163,6 +181,7 @@ public class TareaBean extends UsuarioBean implements Serializable  {
 	
 	public String verTarea()
 	{
+		resetearMensajesdeErrorTarea();
 		Map<String,String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
 		String id2 = params.get("idTareaABM");
 		Integer idTareaABM = Integer.parseInt(id2);
@@ -213,6 +232,7 @@ public class TareaBean extends UsuarioBean implements Serializable  {
 		
 		Integer idUsuario = Integer.parseInt(id2);
 		this.idUsuarioActual = idUsuario;
+		resetearMensajesdeErrorTarea();
 		return "normal_asignar_tarea";
 	}
 	public String asignarTareaPost()
@@ -224,10 +244,18 @@ public class TareaBean extends UsuarioBean implements Serializable  {
 		nuevaTarea.setAcceso(this.accesoTarea);
 		nuevaTarea.setEstado("pendiente");
 		
-		tareaService.asignarUnaTarea(nuevaTarea, this.participanteId);
+		try {
+			ResetearTareaBean();
+			resetearMensajesdeErrorTarea();
+			tareaService.asignarUnaTarea(nuevaTarea, this.participanteId);
+			return "normal_tareas_listado";
+		} catch (Exception e) {
+			this.tareaErrorMensaje1 = e.getMessage();
+			return "normal_asignar_tarea";
+		}
 		
-		resetearElBean();
-		return "normal_tareas_listado";
+		
+		
 	}
 	
 	public List<Tarea> getListaDeTareasAsignadas() {
@@ -273,7 +301,15 @@ public class TareaBean extends UsuarioBean implements Serializable  {
 	
 	public List<Usuario> getlistaDeParicipantesBuscados() {
 		
-		return usuarioService.getListaDeUsuariosQueNoParticipenEnUnaTareaYNickName(this.idTareaABM, this.participanteNickName);
+		try {
+			resetearMensajesdeErrorTarea();
+			return usuarioService.getListaDeUsuariosQueNoParticipenEnUnaTareaYNickName(this.idTareaABM, this.participanteNickName);
+		} catch (Exception e) {
+			this.tareaErrorMensaje1 = e.getMessage();
+			 List<Usuario> listaVacia = new ArrayList<>();
+			return listaVacia;
+		}
+		
 	}
 	
 	
@@ -296,15 +332,24 @@ public class TareaBean extends UsuarioBean implements Serializable  {
 		{
 			return "normal_tareas_listado";
 		}
+		
 		return "normal_tarea_ver";
 	
 	}
 	
 	public String editarTareaPost()
 	{
-		tareaService.modificarUnaTareaPorId(this.idTarea, this.nombreTarea, this.descripcionTarea, this.accesoTarea, this.estadoTarea);
-		resetearElBean();
-		return "normal_tareas_listado";
+		try {
+			
+			resetearMensajesdeErrorTarea();
+			tareaService.modificarUnaTareaPorId(this.idTarea, this.nombreTarea, this.descripcionTarea, this.accesoTarea, this.estadoTarea);
+			return "normal_tareas_listado";
+		} catch (Exception e) {
+			this.tareaErrorMensaje1 = e.getMessage();
+			return  "normal_editar_tarea";
+		}
+		
+		
 	}
 	
 
@@ -455,6 +500,14 @@ public class TareaBean extends UsuarioBean implements Serializable  {
 
 	public void setParticipanteId(Integer participanteId) {
 		this.participanteId = participanteId;
+	}
+
+	public String getTareaErrorMensaje1() {
+		return tareaErrorMensaje1;
+	}
+
+	public void setTareaErrorMensaje1(String tareaErrorMensaje1) {
+		this.tareaErrorMensaje1 = tareaErrorMensaje1;
 	}
 
 

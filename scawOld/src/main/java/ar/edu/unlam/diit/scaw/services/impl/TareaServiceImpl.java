@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import ar.edu.unlam.diit.scaw.beans.heramientas.HerramientasExprecionesRegulares;
 import ar.edu.unlam.diit.scaw.daos.TareaDao;
 import ar.edu.unlam.diit.scaw.daos.impl.TareaDaoImpl;
 import ar.edu.unlam.diit.scaw.entities.AccedeTarea;
@@ -41,13 +42,29 @@ public class TareaServiceImpl implements TareaService{
 	}
 	
 	@Override
-	public void guardarUnaTareaEnLaBdd(Tarea tarea, Integer idUsuario) {
+	public void guardarUnaTareaEnLaBdd(Tarea tarea, Integer idUsuario) throws Exception {
+		if(HerramientasExprecionesRegulares.tieneLetrasNumeroYEspaciosSolamente(tarea.getNombre())==false)
+		{
+			throw new Exception("Error al crear tarea, caráctes como  comillas no son admitidos");
+		}else if(HerramientasExprecionesRegulares.tieneLetrasNumeroYEspaciosSolamente(tarea.getDescripcion())==false)
+		{
+			throw new Exception("Error al crear tarea, caráctes como  comillas no son admitidos");
+		}
+		
 		tareaDao.guardarUnaTareaEnLaBdd(tarea, idUsuario);
 		
 	}
 	
 	@Override
-	public void modificarUnaTareaPorId(Integer id, String nombre, String descripcion, String acceso, String estado) {
+	public void modificarUnaTareaPorId(Integer id, String nombre, String descripcion, String acceso, String estado) throws Exception {
+		if(HerramientasExprecionesRegulares.tieneLetrasNumeroYEspaciosSolamente(nombre)==false)
+		{
+			throw new Exception("Error al modificar tarea, caráctes como  comillas no son admitidos");
+		}else if(HerramientasExprecionesRegulares.tieneLetrasNumeroYEspaciosSolamente(descripcion)==false)
+		{
+			throw new Exception("Error al modificar tarea, caráctes como  comillas no son admitidos");
+		}
+		
 		tareaDao.modificarUnaTareaPorId(id, nombre, descripcion, acceso, estado);
 		
 	}
@@ -71,7 +88,15 @@ public class TareaServiceImpl implements TareaService{
 	}
 	
 	@Override
-	public void asignarUnaTarea(Tarea tarea, Integer idUsuario) {
+	public void asignarUnaTarea(Tarea tarea, Integer idUsuario) throws Exception {
+		if(HerramientasExprecionesRegulares.tieneLetrasNumeroYEspaciosSolamente(tarea.getNombre())==false)
+		{
+			throw new Exception("Error al asignar tarea, caráctes como  comillas no son admitidos");
+		}else if(HerramientasExprecionesRegulares.tieneLetrasNumeroYEspaciosSolamente(tarea.getDescripcion())==false)
+		{
+			throw new Exception("Error al asignar tarea, caráctes como  comillas no son admitidos");
+		}
+		
 		tareaDao.asignarUnaTarea(tarea, idUsuario);
 	}
 	
