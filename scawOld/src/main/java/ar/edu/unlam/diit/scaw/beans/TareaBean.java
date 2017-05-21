@@ -47,6 +47,8 @@ public class TareaBean extends UsuarioBean implements Serializable  {
 	java.util.HashSet<Usuario> listaDeParticipantesBuscados;
 	private String modo;
 
+	private String mensajeDeError;
+	private String mensajeError2;
 	
 	//usurio actual
 	Integer idUsuarioActual ;
@@ -88,8 +90,16 @@ public class TareaBean extends UsuarioBean implements Serializable  {
 		this.accesoTarea =  null;
 		this.estadoTarea = null;
 		this.creadorTarea = null;
+		this.mensajeDeError ="";
+		this.mensajeError2 = "";
 	}
 	
+
+	public void resetearMensajesDeError ()
+	{
+		this.mensajeDeError ="";
+		this.mensajeError2 = "";
+	}	
 	
 	public String agregarTarea()
 	{
@@ -156,10 +166,11 @@ public class TareaBean extends UsuarioBean implements Serializable  {
 		String id2 = params.get("idTareaABM");
 		Integer idTarea = Integer.parseInt(id2);
 		try{
-			tareaService.eliminarUnaTareaDeLaBddPorIdDeTarea(idTarea);
+			tareaService.eliminarUnaTareaDeLaBddPorIdDeTarea(idTarea);			
 		}
 		catch(Exception e){
-			System.out.println("Hubo un error al eliminar la tarea.");
+			resetearMensajesDeError();
+			this.mensajeDeError = e.getMessage();
 		}
 		
 		return "normal_tareas_listado";

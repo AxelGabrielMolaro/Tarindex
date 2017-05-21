@@ -20,10 +20,10 @@ public class TareaServiceImpl implements TareaService{
 	@Override
 	public void eliminarUnaTareaDeLaBddPorIdDeTarea(Integer idTarea) throws Exception{
 		if(HerramientasExprecionesRegulares.tieneComillasElString(idTarea.toString())==false)
-			throw new Exception("Error al eliminar la tarea");
+			throw new Exception("Hubo un error al eliminar la tarea");
 			
 		if(tareaDao.getTareaPorId(idTarea)==null)
-			throw new Exception("Error al eliminar la tarea");
+			throw new Exception("Hubo un error al eliminar la tarea");
 		else tareaDao.eliminarUnaTareaDeLaBddPorIdDeTarea(idTarea);
 
 	}
